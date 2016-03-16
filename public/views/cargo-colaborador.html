@@ -1,0 +1,109 @@
+<div class="wrapper">
+
+    <div ng-include="'views/header.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height:1073px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+
+                {{cargo.nome}}
+                <small>{{cargo.descricao}}</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#/cargos/{{cargo.idDepartamentoCargo}}"> {{cargo.nome}}</a></li>
+                <li class="active">Colaboradoes</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">{{colaboradores.nome}}</h3>
+
+                    <div class="box-tools">
+                        <div class="input-group" style="width: 400px;">
+                            <input type="text" name="table_search" ng-model="term" class="form-control input-sm pull-right"
+                                   placeholder="Search">
+
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive ">
+                    <table class="table table-bordered table-border">
+                        <tr>
+                            <th ng-click="doSort($event, 'id')">
+                                <i class="fa fa-fw fa-sort"
+                                ng-class="{
+                                'fa-sort-amount-asc':sortField == 'id'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'id'&& !reverse
+                                }"
+                                ></i>
+
+                                ID</th>
+                            <th ng-click="doSort($event, 'nome')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'name'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'name'&& !reverse
+                                }"></i>
+                                Nome</th>
+                            <th ng-click="doSort($event, 'email')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'email'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'email'&& !reverse
+                                }"
+                                ></i>
+                                Descrição</th>
+                            <th ng-click="doSort($event, 'created_at')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'created_at'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'created_at'&& !reverse
+                                }"
+                                ></i>
+                                Data criação</th>
+
+                        </tr>
+                        <tr ng-repeat="colaborador in colaboradores | filter:term |orderBy: sortField:reverse">
+                            <td>{{colaborador.id}}</td>
+                            <td>{{colaborador.name}}</td>
+                            <td>{{colaborador.email}}</td>
+                            <td>{{colaborador.created_at | amDateFormat:'DD/MM/YYYY'}}</td>
+
+
+                        </tr>
+
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">I'm a modal!</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li ng-repeat="item in items">
+                            <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                        </li>
+                    </ul>
+                    Selected: <b>{{ selected.item }}</b>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <div ng-include="'views/footer.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+    </div>

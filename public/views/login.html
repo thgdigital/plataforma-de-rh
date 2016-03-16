@@ -1,0 +1,53 @@
+<div class="row">
+
+    <div class="col-xs-12">
+    <div class="login-box">
+      <div class="login-logo">
+        <img ng-src="{{logo}}" alt="ConQuist" width="100%" />
+      </div> <!--login-logo -->
+        <div class="alert alert-danger alert-dismissable" ng-show="error.valid">
+            <button type="button" class="close"  ng-click="off()">×</button>
+            <h4><i class="icon fa fa-ban"></i> Opss</h4>
+            {{error.message}}
+        </div>
+      <div class="login-box-body">
+        
+        <form name="formLogin" novalidate>
+          <div class="form-group has-feedback" ng-class="{ 'has-error' : formLogin.email.$invalid && !formLogin.email.$pristine }">
+            <input type="email" class="form-control" ng-model="user.email" name="email" ng-required="true"  placeholder="Preencher seu e-mail" required>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <p ng-show="formLogin.email.$invalid && !formLogin.email.$pristine" class="help-block">E-mail é obrigatório ou fornece um e-mail válido</p>
+          </div>
+          <div class="form-group has-feedback" ng-class="{ 'has-error' : formLogin.password.$invalid && !formLogin.password.$pristine }">
+            <input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Password" required>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <p ng-show="formLogin.password.$invalid && !formLogin.password.$pristine" class="help-block">Senha é obrigatório</p>
+          </div>
+        </form>
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="checkbox icheck login">
+                <label>
+                  <input iCheck=""  type="checkbox">Manter Conectado
+                </label>
+              </div>
+            </div><!-- /.col -->
+
+            <div class="col-xs-4">
+              <button ng-disabled="formLogin.$invalid" ng-click="login(user)" type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+            </div><!-- /.col -->
+          </div>
+
+
+        <!--<div class="social-auth-links text-center">
+          <p>- OU -</p>
+          <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Login com Facebook</a>
+          <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Login com Google+</a>
+        </div><!-- /.social-auth-links -->
+
+        <a href="#">Esqueci minha senha </a><br>
+        
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+  </div>
+</div>

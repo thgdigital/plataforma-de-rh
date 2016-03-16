@@ -1,0 +1,107 @@
+<div class="wrapper">
+
+    <div ng-include="'views/header.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height:1073px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <!--<small>Skeleton by Alberto</small>-->
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li class="active">Here</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                <i class="fa fa-fw fa-users"></i>
+                                Colaboradores
+                            </h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tr>
+
+                                    <th>Status</th>
+                                    <th>Progresso</th>
+                                    <th style="width: 40px">%</th>
+                                </tr>
+                                <tr>
+
+                                    <td>Ativos</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-red">55%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Inativos</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-yellow">70%</span></td>
+                                </tr>
+
+                            </table>
+                        </div><!-- /.box-body -->
+
+                    </div><!-- /.box -->
+
+                </div><!-- /.col -->
+                <div class="col-md-6">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">
+                                <i class="fa fa-pie-chart"></i> Avaliações</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table">
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Progresso</th>
+                                    <th style="width: 40px">%</th>
+                                </tr>
+                                <tr>
+
+                                    <td>Iniciada</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-red">55%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Finalizada</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-yellow">70%</span></td>
+                                </tr>
+
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <div ng-include="'views/footer.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>

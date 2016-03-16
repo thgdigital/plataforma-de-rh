@@ -1,0 +1,119 @@
+.login{margin-left: 20px;}
+
+.active-menu {
+    border-bottom: 4px solid #ccc;
+}
+.avaliado {
+    padding: 10px;
+}
+
+.table-border > tbody > tr > td, .table-border > tbody > tr > th, .table-border > tfoot > tr > td, .table-border > tfoot > tr > th, .table-border > thead > tr > td, .table-border > thead > tr > th {
+    border: 1px solid #ddd !important;
+
+}
+.avalia-block {
+    float: left;
+    padding: 10px;
+    width: 100%;
+    background: #eee;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+.bock-colaborador-table {
+    float: left;
+    width: 100%;
+}
+.bock-colaborador-table h6{
+    margin-top: 0;
+}
+.escolha .box-header{
+    padding: 10px 0;
+}
+.bock-colaborador-table small{
+    margin-bottom: 0;
+    float: left;
+}
+.avalia-block-rigth {
+    float: left;
+    padding: 10px;
+    width: 100%;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+.active-avalido{
+    background: #D3DBE3 !important;
+}
+.title-avalia{
+    float: left;
+}
+.total-avaliado{
+    float: right;
+}
+ul#list {
+    list-style: none;
+    padding: 5px 0;
+    float: left;
+    width: 100%;
+}
+ul#list li {
+    display: inline;
+    background: #eee;
+    padding: 5px;
+    width: 100%;
+    float: left;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+ul#list-avaliado {
+    list-style: none;
+    padding: 5px 0;
+    float: left;
+    width: 100%;
+}
+ul#list-avaliado li {
+    display: inline;
+    background: #eee;
+    padding: 5px;
+    width: 100%;
+    float: left;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+.bock-colaborador {
+    padding: 5px;
+}
+
+.footer-colaborador{
+    float: right;
+}
+.competencia{
+    width: 100%;
+}
+.competencia > h5 {
+    font-weight: bold;
+    font-size: 18px;
+}
+.competencia span{
+    font-weight: normal;
+    font-size: 12px;
+}
+.curso{
+    cursor: pointer;
+}
+.label.label-primary.ng-binding {
+    font-size: 12px;
+    font-weight: normal;
+}
+#loading-bar .bar {
+    background: #2c3e50;
+}
+#loading-bar .peg {
+    box-shadow: 0 0 10px #2c3e50, 0 0 5px #2c3e50;
+}
+#loading-bar-spinner .spinner-icon {
+    border-top-color:  #2c3e50;
+    border-left-color: #2c3e50;
+}

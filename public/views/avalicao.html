@@ -1,0 +1,125 @@
+<div class="wrapper">
+
+    <div ng-include="'views/header.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height:1073px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Criar Nova Avaliacão
+                <small>Editar, Excluir</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Nova Avaliação</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Cadastrar Nova Avaliação</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <form name="formAvalicao">
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : formAvalicao.nome.$invalid && !formAvalicao.nome.$pristine }">
+                            <label>Nome da Avaliacão*</label>
+
+                            <input type="text" name="nome" ng-required="true" ng-model="avaliacoes.nome"
+                                   class="form-control" placeholder="Nome da Avaliacão">
+
+                            <p ng-show="formAvalicao.nome.$invalid && !formAvalicao.nome.$pristine" class="help-block">
+                                Nome da Avaliacão é obrigatório</p>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : formAvalicao.descricao.$invalid && !formAvalicao.descricao.$pristine }">
+                            <label>Descrição da Avaliacão*</label>
+
+                            <textarea class="form-control" ng-required="true" name="descricao"  row="5" cols="5" ng-model="avaliacoes.descricao"
+                                      placeholder="Digite a descricão"></textarea>
+
+                            <p ng-show="formAvalicao.descricao.$invalid && !formAvalicao.descricao.$pristine"
+                               class="help-block">Descrição da Avaliacão é obrigatório</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : formAvalicao.inicio.$invalid && !formAvalicao.inicio.$pristine }">
+                                    <label>Data de inicio da Avaliacão*</label>
+
+                                    <p class="input-group">
+                                        <input type="text" class="form-control" on-open-focus=""
+                                               uib-datepicker-popup="dd/MM/yyyy" ng-model="avaliacoes.date_inicio"
+                                               is-open="status.opened" min-date="minDate" max-date=""
+                                               datepicker-options="dateOptions"
+                                               ng-required="true" close-text="Close"
+                                               name="inicio"
+                                        />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                    </p>
+                                    <p ng-show="formAvalicao.inicio.$invalid && !formAvalicao.inicio.$pristine"
+                                       class="help-block">Data de início é obrigatório</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : formAvalicao.finalizacao.$invalid && !formAvalicao.finalizacao.$pristine }">
+                                    <label>Data de finalização da Avaliacão*</label>
+
+                                    <p class="input-group">
+                                        <input type="text" class="form-control" on-open-focus=""
+                                               uib-datepicker-popup="dd/MM/yyyy" ng-model="avaliacoes.date_finalizar"
+                                               is-open="status.final" min-date="minDate" max-date=""
+                                               datepicker-options="dateOptions"
+                                               ng-required="true" close-text="Close"
+                                               name="finalizacao"
+                                        />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openFinal($event)"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                    </p>
+                                    <p ng-show="formAvalicao.finalizacao.$invalid && !formAvalicao.finalizacao.$pristine"
+                                       class="help-block">Data de finalização é obrigatório</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : formAvalicao.relatorio.$invalid && !formAvalicao.relatorio.$pristine }">
+
+                                    <label>Data de liberação de relatorio da Avaliacão*</label>
+
+                                    <p class="input-group">
+                                        <input type="text" class="form-control" on-open-focus=""
+                                               uib-datepicker-popup="dd/MM/yyyy" ng-model="avaliacoes.date_result"
+                                               is-open="status.relatorio" min-date="minDate" max-date=""
+                                               datepicker-options="dateOptions"
+                                               ng-required="true" close-text="Close"
+                                               name="relatorio"
+                                        />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openRelatorio($event)"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                    </p>
+                                    <p ng-show="formAvalicao.relatorio.$invalid && !formAvalicao.relatorio.$pristine"
+                                       class="help-block">Data do relatorio é obrigatório</p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <button class="btn btn-primary" ng-click="cadastarAvaliacao(avaliacoes)" ng-disabled="formAvalicao.$invalid">Cadastrar Avalição</button>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+          
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <div ng-include="'views/footer.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>

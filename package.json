@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.8.8"
+  },
+  "dependencies": {
+    "angular-local-storage": "^0.2.2",
+    "angular-moment": "^0.10.3",
+    "bootstrap-sass": "^3.0.0",
+    "laravel-elixir": "^3.0.0",
+    "moment": "^2.11.0",
+    "toastr": "^2.1.2"
+  }
+}

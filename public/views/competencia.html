@@ -1,0 +1,195 @@
+<div class="wrapper">
+
+    <div ng-include="'views/header.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height:1073px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Mapeamento de Competências
+                <small>Editar, Excluir</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Cadastrar Compêtencia</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="box">
+                <div class="box-header">
+                    <!--<h3 class="box-title"></h3>-->
+                    <div class="box-title">
+                        <button class="btn btn-block btn-primary btn-sm" ng-click="open()">Inserir uma nova
+                            Compêtencia
+                        </button>
+
+                    </div>
+                    <div class="box-tools">
+                        <div class="input-group" style="width: 400px;">
+                            <input type="text" name="table_search" ng-model="term"
+                                   class="form-control input-sm pull-right"
+                                   placeholder="Search">
+
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive ">
+                    <table class="table table-bordered table-border">
+                        <tr>
+                            <th ng-click="doSort($event, 'nome')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'nome'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'nome'&& !reverse
+                                }"></i>
+                                Nome
+                            </th>
+                            <th ng-click="doSort($event, 'descricao')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'descricao'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'descricao'&& !reverse
+                                }"
+                                ></i>
+                                Descrição
+                            </th>
+
+                            <th ng-click="doSort($event, 'tipo')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'tipo'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'tipo'&& !reverse
+                                }"
+                                ></i>
+                                Tipo
+                            </th>
+                            <th ng-click="doSort($event, 'created_at')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'created_at'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'created_at'&& !reverse
+                                }"
+                                ></i>
+                                Data criação
+                            </th>
+                            <th>Açoes</th>
+                        </tr>
+                        <tr ng-show="competencias.length <= 0">
+                            <td colspan="5" align="center"><strong>Não existe dados</strong></td>
+                        </tr>
+                        <tr ng-repeat="competencia in competencias | filter:term |orderBy: sortField:reverse">
+                            <td>{{competencia.nome}}</td>
+                            <td>{{competencia.descricao}}</td>
+                            <td>
+                                <small class="label label-primary">{{competencia.tipo}}</small>
+                            </td>
+                            <td>{{competencia.created_at | amDateFormat:'DD/MM/YYYY'}}</td>
+                            <td>
+                                <a href="javascript:void(0)" ng-click="excluir(competencia,$event)"
+                                   uib-tooltip="Excluir dados">
+                                    <i class="fa fa-fw fa-trash"></i>
+                                </a>
+                                <a uib-tooltip="Editar dados" href="#/competencia-editar/{{competencia.id}}">
+                                    <i class="fa fa-fw fa-pencil-square-o"></i>
+                                </a>
+                                <a uib-tooltip="Comportamento cadastro nessa competência"
+                                   href="#/competencia-comportamento/{{competencia.IdCompetencia}}">
+                                    <i class="fa fa-fw fa-certificate"></i>
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+                    <uib-pagination total-items="totalItems" next-text="Próximo"
+                                    previous-text="Voltar" items-per-page="numPages"
+                                    ng-model="currentPage" max-size="maxSize"
+                                    ng-change="pageChanged()"></uib-pagination>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+            <script type="text/ng-template" id="ExcluirCompetencia.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Apagar está competência</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Itens para Apagar </label>
+                        <input ng-model="competenciaExcluir" class="form-control" type="text" disabled/>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{ 'has-error' :notCompe }"
+                    >
+                        <label>Substitua-o por </label>
+
+                        <select name="tipo" class="form-control"
+                                ng-options="not.id as not.nome for not in notCompetencia"
+                                ng-change="getNot()"
+                                ng-model="not.competencia">
+                            <option value="">Selecione um competência</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button"  ng-disabled="!not.competencia" ng-click="ok()">OK</button>
+                </div>
+            </script>
+
+            <script type="text/ng-template" id="competencia.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Cadastrar nova Compêtencia</h3>
+                </div>
+                <div class="modal-body">
+                    <form name="Competencia">
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : Competencia.nome.$invalid && !Competencia.nome.$pristine }">
+                            <input type="text" name="nome" ng-required="true" ng-model="competencia.nome"
+                                   class="form-control" placeholder="Nome da Compêtencia">
+
+                            <p ng-show="Competencia.nome.$invalid && !Competencia.nome.$pristine" class="help-block">
+                                Nome da Compêtencia é obrigatório</p>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : Competencia.descricao.$invalid && !Competencia.descricao.$pristine }">
+                            <textarea name="descricao" ng-required="true" ng-model="competencia.descricao"
+                                      class="form-control" rows="5" cols="5"
+                                      placeholder="Digite a descriçãos"></textarea>
+
+                            <p ng-show="Competencia.descricao.$invalid && !Competencia.descricao.$pristine"
+                               class="help-block">Descrição da compêtencia é obrigatório</p>
+                        </div>
+
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : Competencia.tipo.$invalid && !Competencia.tipo.$pristine }">
+                            <select ng-required="true" required name="tipo" class="form-control"
+                                    ng-change="getEstado()"
+                                    ng-options="tipo.id as tipo.nome for tipo in tipos"
+                                    ng-model="competencia.tipo">
+                                <option value="">Selecione um Tipo</option>
+                            </select>
+
+                            <p ng-show="Competencia.tipo.$invalid && !Competencia.tipo.$pristine" class="help-block">
+                                Tipo da compêtencia é obrigatório</p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-disabled="Competencia.$invalid" type="button"
+                            ng-click="cadastrar(competencia)">Cadastrar nova Competência
+                    </button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <div ng-include="'views/footer.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+</div>

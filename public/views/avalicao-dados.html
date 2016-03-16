@@ -1,0 +1,814 @@
+<div class="wrapper">
+
+    <div ng-include="'views/header.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height:1073px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <i class="fa fa-area-chart"></i> {{avalicoes.nome}}
+                <small>{{avalicoes.descricao}}</small>
+            </h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#/dashboard"><i class="fa fa-dashboard"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#/listar-avalicoes">Avalições</a>
+                </li>
+                <li>
+                    <a href="#/avalicao-dados/{{avalicoes.id}}">{{avalicoes.nome}}</a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+
+            <div class="box">
+                <div class="box-header">
+
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <uib-tabset>
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <i class="fa fa-fw fa-cog"></i> Informações Gerais
+                            </uib-tab-heading>
+                            <div class="avaliado">
+                                <form name="formAvalicao">
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error' : formAvalicao.nome.$invalid && !formAvalicao.nome.$pristine }">
+                                        <label>Nome da Avaliacão*</label>
+
+                                        <input type="text" name="nome" ng-required="true" ng-model="avalicoes.nome"
+                                               class="form-control" placeholder="Nome da Avaliacão">
+
+                                        <p ng-show="formAvalicao.nome.$invalid && !formAvalicao.nome.$pristine"
+                                           class="help-block">
+                                            Nome da Avaliacão é obrigatório</p>
+                                    </div>
+                                    <div class="form-group"
+                                         ng-class="{ 'has-error' : formAvalicao.descricao.$invalid && !formAvalicao.descricao.$pristine }">
+                                        <label>Descrição da Avaliacão*</label>
+
+                            <textarea class="form-control" ng-required="true" name="descricao" row="5" cols="5"
+                                      ng-model="avalicoes.descricao"
+                                      placeholder="Digite a descricão"></textarea>
+
+                                        <p ng-show="formAvalicao.descricao.$invalid && !formAvalicao.descricao.$pristine"
+                                           class="help-block">Descrição da Avaliacão é obrigatório</p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group"
+                                                 ng-class="{ 'has-error' : formAvalicao.inicio.$invalid && !formAvalicao.inicio.$pristine }">
+                                                <label>Data de inicio da Avaliacão*</label>
+
+                                                <p class="input-group">
+                                                    <input type="text" class="form-control" on-open-focus=""
+                                                           uib-datepicker-popup="dd/MM/yyyy"
+                                                           ng-model="avalicoes.date_inicio"
+                                                           is-open="status.opened" min-date="minDate" max-date=""
+                                                           datepicker-options="dateOptions"
+                                                           ng-required="true" close-text="Close"
+                                                           name="inicio"
+                                                    />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                                </p>
+                                                <p ng-show="formAvalicao.inicio.$invalid && !formAvalicao.inicio.$pristine"
+                                                   class="help-block">Data de início é obrigatório</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group"
+                                                 ng-class="{ 'has-error' : formAvalicao.finalizacao.$invalid && !formAvalicao.finalizacao.$pristine }">
+                                                <label>Data de finalização da Avaliacão*</label>
+
+                                                <p class="input-group">
+                                                    <input type="text" class="form-control" on-open-focus=""
+                                                           uib-datepicker-popup="dd/MM/yyyy"
+                                                           ng-model="avalicoes.date_finalizar"
+                                                           is-open="status.final" min-date="minDate" max-date=""
+                                                           datepicker-options="dateOptions"
+                                                           ng-required="true" close-text="Close"
+                                                           name="finalizacao"
+                                                    />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openFinal($event)"><i
+                                            class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                                </p>
+                                                <p ng-show="formAvalicao.finalizacao.$invalid && !formAvalicao.finalizacao.$pristine"
+                                                   class="help-block">Data de finalização é obrigatório</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group"
+                                                 ng-class="{ 'has-error' : formAvalicao.relatorio.$invalid && !formAvalicao.relatorio.$pristine }">
+                                                <label>Data de liberação de relatorio da Avaliacão*</label>
+
+                                                <p class="input-group">
+                                                    <input type="text" class="form-control" on-open-focus=""
+                                                           uib-datepicker-popup="dd/MM/yyyy"
+                                                           ng-model="avalicoes.date_result"
+                                                           is-open="status.relatorio" min-date="minDate" max-date=""
+                                                           datepicker-options="dateOptions"
+                                                           ng-required="true" close-text="Close"
+                                                           name="relatorio"
+                                                    />
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default"
+                                                                ng-click="openRelatorio($event)">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </button>
+                                                    </span>
+                                                </p>
+                                                <p ng-show="formAvalicao.relatorio.$invalid && !formAvalicao.relatorio.$pristine"
+                                                   class="help-block">Data do relatorio é obrigatório</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <button class="btn btn-primary" ng-click="AtualizarAvalicao(avalicoes)"
+                                        ng-disabled="formAvalicao.$invalid">Atualizar Avaliação
+                                </button>
+                            </div>
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <i class="fa fa-fw fa-sitemap"></i> Matriz por Avaliado
+                            </uib-tab-heading>
+                            <div class="avaliado">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <h4>Avaliados</h4>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Refinar Colaborador"
+                                                           ng-model="avaliadoBusca"
+
+                                                    />
+
+                                                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!--<div class="avalia-block">
+                                            <span class="title-avalia">Avaliados</span>
+                                            <span class="total-avaliado badge bg-light-blue">{{total_avaliado}}</span>
+                                        </div>-->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <ul id="list">
+                                                    <li ng-repeat="avali in avaliado | filter:avaliadoBusca" ng-click="avalido($event, avali.id)"  ng-class="{ 'active-avalido': activeAvaliado == avali.id }">
+                                                        <div class="bock-colaborador">
+                                                            <h6>{{avali.name}}</h6>
+                                                            <small>{{avali.departamento}}/{{avali.cargos}}</small>
+                                                            <div class="footer-colaborador"><i class="fa fa-user"></i>
+                                                                <span class="total-avaliado badge bg-light-blue">{{avali.totalAvaliadores}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="alert alert-warning alert-dismissable text-center" ng-show="avalia">
+                                            <h4><i class="fa fa-user"></i></h4>
+
+                                            <p>Selecione um avaliado, na lista ao lado</p>
+                                        </div>
+
+                                        <div class="escolha" ng-hide="avalia">
+
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <div class="avalia-block-rigth">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <button ng-click="openModal()"
+                                                                                class="btn btn-success">
+                                                                            <i class="fa fa-fw fa-plus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <button ng-click="apagarAvaliadores(avalidores,activeAvaliado)"
+                                                                                ng-if="isAvaliadoresSelecionado(avalidores)"
+                                                                                class="btn btn-danger left">
+                                                                            <i class="fa fa-fw fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="Refinar Pesquisa"
+                                                                           ng-model="avaliadorBusca"
+                                                                           name="busca"
+                                                                    />
+
+                                                                    <div class="input-group-addon"><i
+                                                                            class="fa fa-search"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="box-body table-responsive no-padding">
+                                                    <table class="table  table-bordered table-border"
+                                                           ng-show="avalidores.length > 0">
+                                                        <tr>
+                                                            <th style="width: 10px"><input type="checkbox"
+                                                                                           ng-model="selectedAll"
+                                                                                           ng-click="checkAll(avalidores)">
+                                                            </th>
+                                                            <th style="width: 60px">Tipo de Avaliador</th>
+                                                            <th>Avaliadores</th>
+                                                            <th></th>
+                                                        </tr>
+
+                                                        <tr ng-repeat="avaliador in avalidores | filter:avaliadorBusca">
+                                                            <td><input type="checkbox" ng-model="avaliador.selecionado">
+                                                            </td>
+                                                            <td>
+                                                                <select
+                                                                        ng-disabled="avaliador.tipo_id == 2"
+                                                                        ng-change="changedValue(avaliador,avaliador.tipo_id,activeAvaliado)"
+                                                                        ng-model="avaliador.tipo_id"
+                                                                        ng-options="tipo.id as tipo.nome for tipo in tipos">
+                                                                    <option value="">Selecione uma opção</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <div class="bock-colaborador-table">
+                                                                    <h6>{{avaliador.name}}</h6>
+                                                                    <small>
+                                                                        {{avaliador.departamento}}/{{avaliador.cargos}}
+                                                                    </small>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"
+                                                                   ng-click="removerAvalidor(avaliador,activeAvaliado)">
+                                                                    <i class="fa fa-fw fa-trash"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <script type="text/ng-template" id="modalAvaliado.html">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title">Escolha um Avaliador</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="Refinar Colaborador"
+                                                                           ng-model="term"
+                                                                           name="busca"
+                                                                    />
+
+                                                                    <div class="input-group-addon"><i
+                                                                            class="fa fa-search"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br/><br/>
+                                                        <table class="table  table-bordered table-border">
+                                                            <tr>
+                                                                <td><input type="checkbox" /></td>
+                                                                <th ng-click="doSortAvaliador($event, 'name')">
+                                                                    <i class="fa fa-fw fa-sort"
+                                                                       ng-class="{
+                                                                                'fa-sort-amount-asc':sortFieldAvalidor == 'name'&& reverse,
+                                                                                'fa-sort-amount-desc':sortFieldAvalidor == 'name'&& !reverse
+                                                                                }"
+                                                                    ></i>
+
+                                                                    Nome
+                                                                </th>
+                                                                <th ng-click="doSortAvaliador($event, 'departamento')">
+                                                                    <i class="fa fa-fw fa-sort"
+                                                                       ng-class="{
+                                                                                'fa-sort-amount-asc':sortFieldAvalidor == 'departamento'&& reverse,
+                                                                                'fa-sort-amount-desc':sortFieldAvalidor == 'departamento'&& !reverse
+                                                                                }"
+                                                                    ></i>
+                                                                    Departamento
+                                                                </th>
+                                                                <th ng-click="doSortAvaliador($event, 'cargos')">
+                                                                    <i class="fa fa-fw fa-sort"
+                                                                       ng-class="{
+                                                                                'fa-sort-amount-asc':sortFieldAvalidor == 'cargos'&& reverse,
+                                                                                'fa-sort-amount-desc':sortFieldAvalidor == 'cargos'&& !reverse
+                                                                                }"
+                                                                    ></i>
+                                                                    Cargo
+                                                                </th>
+                                                            </tr>
+                                                            <tr ng-repeat="item in items | filter:term |orderBy: sortFieldAvalidor:reverse"
+                                                                ng-click="selecionadoAvaliador(item)">
+                                                                <td><input type="checkbox" /></td>
+                                                                <td>{{item.name}}</td>
+                                                                <td>{{item.departamento}}</td>
+                                                                <td>{{item.cargos}}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                    </div>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <i class="fa fa-fw fa-sitemap"></i> Matriz por Avaliador
+                            </uib-tab-heading>
+                            <div class="avaliado">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <h4>Avalidadores</h4>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Refinar Colaborador"
+                                                           ng-model="avaliadorBusca"
+                                                           name="busca"
+                                                    />
+
+                                                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<div class="avalia-block">
+                                            <span class="title-avalia">Avaliadores</span>
+                                            <span class="total-avaliado badge bg-light-blue">{{total_avaliado}}</span>
+                                        </div>-->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <ul id="list-avaliado">
+                                                    <li ng-repeat="avali in avaliado | filter: avaliadorBusca"
+                                                        ng-click="avaliadores($event, avali.id)"
+                                                        ng-class="{ 'active-avalido': activeAvaliadores == avali.id }">
+                                                        <div class="bock-colaborador">
+                                                            <h6>{{avali.name}}</h6>
+                                                            <small>{{avali.departamento}}/{{avali.cargos}}</small>
+                                                            <div class="footer-colaborador"><i class="fa fa-user"></i>
+                                                                <span class="total-avaliado badge bg-light-blue">5</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="alert alert-warning alert-dismissable text-center"
+                                             ng-show="avaliad">
+                                            <h4><i class="fa fa-user"></i></h4>
+
+                                            <p>Selecione um avaliado, na lista ao lado</p>
+                                        </div>
+                                        <div class="escolha" ng-hide="avaliad">
+
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <div class="avalia-block-rigth">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <button ng-click="openModal()"
+                                                                                class="btn btn-success">
+                                                                            <i class="fa fa-fw fa-plus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <button ng-click="apagarAvaliadores(avalidores,activeAvaliado)"
+                                                                                ng-if="isAvaliadoresSelecionado(avalidores)"
+                                                                                class="btn btn-danger left">
+                                                                            <i class="fa fa-fw fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="Refinar Pesquisa"
+                                                                           ng-model="avaliador.busca"
+                                                                           name="busca"
+                                                                    />
+
+                                                                    <div class="input-group-addon"><i
+                                                                            class="fa fa-search"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="box-body table-responsive no-padding">
+                                                    <table class="table  table-bordered table-border"
+                                                           ng-show="avaliados.length > 0">
+                                                        <tr>
+                                                            <th style="width: 10px"><input type="checkbox"
+                                                                                           ng-model="selectedAll"
+                                                                                           ng-click="checkAll(avaliados)">
+                                                            </th>
+                                                            <th style="width: 60px">Tipo de Avaliado</th>
+                                                            <th>Avaliados</th>
+                                                            <th></th>
+                                                        </tr>
+
+                                                        <tr ng-repeat="avaliado in avaliados | filter:avaliado.busca">
+                                                            <td><input type="checkbox" ng-model="avaliado.selecionado">
+                                                            </td>
+                                                            <td>
+                                                                <select
+                                                                        ng-disabled="avaliado.tipo_id == 2"
+                                                                        ng-change="changedValue(avaliado,avaliado.tipo_id,activeAvaliadores)"
+                                                                        ng-model="avaliado.tipo_id"
+                                                                        ng-options="tipo.id as tipo.nome for tipo in tipos">
+                                                                    <option value="">Selecione uma opção</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <div class="bock-colaborador-table">
+                                                                    <h6>{{avaliado.name}}</h6>
+                                                                    <small>
+                                                                        {{avaliado.departamento}}/{{avaliado.cargos}}
+                                                                    </small>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"
+                                                                   ng-click="removerAvalido(avaliado,activeAvaliadores)">
+                                                                    <i class="fa fa-fw fa-trash"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <script type="text/ng-template" id="modalAvaliadores.html">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title">Escolha um Avaliador</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                           placeholder="Refinar Colaborador"
+                                                                           ng-model="term"
+                                                                           name="busca"
+                                                                    />
+
+                                                                    <div class="input-group-addon"><i
+                                                                            class="fa fa-search"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br/><br/>
+                                                        <table class="table  table-bordered table-border">
+                                                            <tr>
+                                                                <th ng-click="doSortAvaliador($event, 'id')">
+                                                                    <i class="fa fa-fw fa-sort"
+                                                                       ng-class="{
+                                                                            'fa-sort-amount-asc':sortFieldAvalidor == 'id'&& reverse,
+                                                                            'fa-sort-amount-desc':sortFieldAvalidor == 'id'&& !reverse
+                                                                            }"
+                                                                    ></i>
+                                                                    ID
+                                                                </th>
+                                                                <th ng-click="doSortAvaliador($event, 'name')">
+                                                                    <i class="fa fa-fw fa-sort"
+                                                                       ng-class="{
+                                                                                'fa-sort-amount-asc':sortFieldAvalidor == 'name'&& reverse,
+                                                                                'fa-sort-amount-desc':sortFieldAvalidor == 'name'&& !reverse
+                                                                                }"
+                                                                    ></i>
+
+                                                                    Nome
+                                                                </th>
+                                                                <th ng-click="doSortAvaliador($event, 'departamento')">
+                                                                    <i class="fa fa-fw fa-sort"
+                                                                       ng-class="{
+                                                                                'fa-sort-amount-asc':sortFieldAvalidor == 'departamento'&& reverse,
+                                                                                'fa-sort-amount-desc':sortFieldAvalidor == 'departamento'&& !reverse
+                                                                                }"
+                                                                    ></i>
+                                                                    Departamento
+                                                                </th>
+                                                                <th ng-click="doSortAvaliador($event, 'cargos')">
+                                                                    <i class="fa fa-fw fa-sort"
+                                                                       ng-class="{
+                                                                                'fa-sort-amount-asc':sortFieldAvalidor == 'cargos'&& reverse,
+                                                                                'fa-sort-amount-desc':sortFieldAvalidor == 'cargos'&& !reverse
+                                                                                }"
+                                                                    ></i>
+                                                                    Cargo
+                                                                </th>
+                                                            </tr>
+                                                            <tr ng-repeat="item in items | filter:term |orderBy: sortFieldAvalidor:reverse"
+                                                                ng-click="selecionadoAvaliador(item)">
+                                                                <td>{{item.id}}</td>
+                                                                <td>{{item.name}}</td>
+                                                                <td>{{item.departamento}}</td>
+                                                                <td>{{item.cargos}}</td>
+                                                            </tr>
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                    </div>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab select="BuscarCompetencia()">
+                            <uib-tab-heading>
+                                <i class="fa fa-fw fa-edit"></i>Competência usadas
+                            </uib-tab-heading>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="avalia-block">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+
+                                                <button uib-tooltip="Banco de dados de competências"
+                                                        ng-click="openModalCompetencia()"
+                                                        class="btn btn-primary">
+                                                    <i class="fa fa-fw fa-list"></i>
+                                                </button>
+                                                <button ng-click="apagarCompetencia(avalidores,activeAvaliado)"
+                                                        class="btn btn-danger left">
+                                                    <i class="fa fa-fw fa-trash"></i>
+                                                </button>
+                                                <a  href="#/competencia" target="_blank" uib-tooltip="Cadastrar nova Competência"
+                                                        ng-click="openModalNova()"
+                                                        class="btn btn-success">
+                                                    <i class="fa fa-fw fa-plus"></i>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Buscar Competência"
+                                                           ng-model="competencias.busca"
+                                                           name="busca"
+                                                    />
+
+                                                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <script type="text/ng-template" id="modalCompetencia.html">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Escolha uma Competência</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Refinar Colaborador"
+                                                           ng-model="term"
+                                                           name="busca"
+                                                    />
+
+                                                    <div class="input-group-addon"><i
+                                                            class="fa fa-search"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/><br/>
+
+                                        <table class="table  table-bordered table-border">
+                                            <tr>
+                                                <th ng-click="doSortCompetencia($event, 'id')">
+                                                    <i class="fa fa-fw fa-sort"
+                                                       ng-class="{
+                                                        'fa-sort-amount-asc':sortFieldCompetencia == 'id'&& reverse,
+                                                        'fa-sort-amount-desc':sortFieldCompetencia == 'id'&& !reverse
+                                                        }"
+                                                    ></i>
+                                                    ID
+                                                </th>
+                                                <th ng-click="doSortCompetencia($event, 'competencias')">
+                                                    <i class="fa fa-fw fa-sort"
+                                                       ng-class="{
+                                                        'fa-sort-amount-asc':sortFieldCompetencia == 'competencias'&& reverse,
+                                                        'fa-sort-amount-desc':sortFieldCompetencia == 'competencias'&& !reverse
+                                                        }"
+                                                    ></i>
+
+                                                    Nome
+                                                </th>
+                                                <th ng-click="doSortCompetencia($event, 'tipo')">
+                                                    <i class="fa fa-fw fa-sort"
+                                                       ng-class="{
+                                                        'fa-sort-amount-asc':sortFieldCompetencia == 'tipo'&& reverse,
+                                                        'fa-sort-amount-desc':sortFieldCompetencia == 'tipo'&& !reverse
+                                                        }"
+                                                    ></i>
+                                                    Tipo de competencia
+                                                </th>
+
+                                            </tr>
+                                            <tr ng-repeat="item in items | filter:term |orderBy: sortFieldCompetencia:reverse"
+                                                ng-click="selecionadoCompetencia(item)">
+                                                <td>{{item.id}}</td>
+                                                <td>{{item.competencias}}</td>
+                                                <td>{{item.tipo}}</td>
+
+                                            </tr>
+                                        </table>
+
+                                        <uib-pagination total-items="totalItems" next-text="Próximo"
+                                                        previous-text="Voltar" items-per-page="numPages"
+                                                        ng-model="currentPage" max-size="maxSize"
+                                                        ng-change="pageChanged()"></uib-pagination>
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!---<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                                        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>-->
+                                    </div>
+                                </script>
+                                <script type="text/ng-template" id="NovaCompetencia.html">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Cadastrar nova Compêtencia</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li ng-repeat="item in items">
+                                                <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{
+                                                    item }}</a>
+                                            </li>
+                                        </ul>
+                                        Selected: <b>{{ selected.item }}</b>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                                        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel
+                                        </button>
+                                    </div>
+                                </script>
+                                <div class="box-header"></div>
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table  table-bordered table-border"
+                                           ng-show="competenciasAvalicao.length > 0">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10px">
+                                                <input type="checkbox"
+                                                       ng-model="selectedAllCompetencia"
+                                                       ng-click="checkAllCompetencia(competenciasAvalicao)">
+                                            </th>
+                                            <th ng-click="doSortCompetenciaAtive($event, 'competencias')">
+                                                <i class="fa fa-fw fa-sort"
+                                                   ng-class="{
+                                                        'fa-sort-amount-asc':sortFieldCompetenciaActive == 'competencias'&& reverseActive,
+                                                        'fa-sort-amount-desc':sortFieldCompetenciaActive == 'competencias'&& !reverseActive
+                                                        }"
+                                                ></i>
+                                                Nome
+                                            </th>
+                                            <th ng-click="doSortCompetenciaAtive($event, 'tipo')">
+                                                <i class="fa fa-fw fa-sort"
+                                                   ng-class="{
+                                                        'fa-sort-amount-asc':sortFieldCompetenciaActive == 'tipo'&& reverseActive,
+                                                        'fa-sort-amount-desc':sortFieldCompetenciaActive == 'tipo'&& !reverseActive
+                                                        }"
+                                                ></i>
+                                                Tipo
+                                            </th>
+                                            <th ng-click="doSortCompetenciaAtive($event, 'total')">
+                                                <i class="fa fa-fw fa-sort"
+                                                   ng-class="{
+                                                        'fa-sort-amount-asc':sortFieldCompetenciaActive == 'total'&& reverseActive,
+                                                        'fa-sort-amount-desc':sortFieldCompetenciaActive == 'total'&& !reverseActive
+                                                        }"
+                                                ></i>
+
+                                                Numero de Comportamento
+                                            </th>
+                                            <th ng-click="doSortCompetenciaAtive($event, 'updated_at')">
+                                                <i class="fa fa-fw fa-sort"
+                                                   ng-class="{
+                                                        'fa-sort-amount-asc':sortFieldCompetenciaActive == 'updated_at'&& reverseActive,
+                                                        'fa-sort-amount-desc':sortFieldCompetenciaActive == 'updated_at'&& !reverseActive
+                                                        }"
+                                                ></i>
+                                                Atualizado em
+                                            </th>
+                                            <th width="1%" nowrap class="curso"
+                                                ng-click="openAllDescriacao()">
+                                                <i class="fa" ng-class="{
+                                               'fa-plus-square': openDescriacao.length == 0,
+                                               'fa-minus-square': openDescriacao.length > 0
+                                               }"></i></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody ng-repeat="compete in competenciasAvalicao | filter:competencias.busca |orderBy: sortFieldCompetenciaActive:reverseActive">
+                                            <tr>
+                                                <td><input type="checkbox" ng-model="compete.selecionado"></td>
+                                                <td>{{compete.competencias}}</td>
+                                                <td>{{compete.tipo}}</td>
+                                                <td>{{compete.total}}</td>
+                                                <td>{{compete.updated_at | amDateFormat:'DD/MM/YYYY HH:mm:ss'}}</td>
+                                                <td width="1%">
+                                                    <a href="javascript:void(0)" ng-show="compete.total > 0"
+                                                       ng-click="doOpenDescricao(compete.id)">
+                                                        <i class="fa" ng-class="{
+                                                       'fa-plus-square': openDescriacao.indexOf(compete.id) == -1,
+                                                       'fa-minus-square': openDescriacao.indexOf(compete.id) > -1
+                                                       }">
+                                                        </i>
+                                                    </a>
+                                                    <i class="fa fa-plus-square" ng-show="compete.total == 0"
+                                                       style="opacity:0.3"></i>
+                                                </td>
+                                            </tr>
+                                            <tr ng-show="openDescriacao.indexOf(compete.id) > -1"
+                                                ng-repeat="comportamento in compete.comportamento">
+                                                <td><strong>{{comportamento.id}}</strong></td>
+                                                <td colspan="3"><strong>{{comportamento.nome}}</strong></td>
+                                                <td>
+                                                    <i class="fa fa-fw fa-pencil-square-o"></i>
+                                                    <i class="fa fa-fw fa-trash-o"></i>
+                                                </td>
+                                                <td width="3%">
+                                                    <!--<a href="javascript:void(0)" ng-show="compete.total > 0"
+                                                                   ng-click="doOpenDescricao(compete.id)">
+                                                    <i class="fa" ng-class="{
+                                                       'fa-plus-square': openDescriacao.indexOf(compete.id) == -1,
+                                                       'fa-minus-square': openDescriacao.indexOf(compete.id) > -1
+                                                       }">
+                                                    </i>
+                                                    ng-show="compete.total == 0"
+                                                </a>-->
+                                                <i class="fa fa-plus-square"  style="opacity:0.3"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <i class="fa fa-fw fa-edit"></i>Peso da Matriz
+                            </uib-tab-heading>
+                            Static content
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <i class="fa fa-fw fa-percent"></i>Escala Média Final
+                            </uib-tab-heading>
+                            Static content
+                        </uib-tab>
+                    </uib-tabset>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <div ng-include="'views/footer.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+    </div>

@@ -1,0 +1,121 @@
+<div class="wrapper">
+
+    <div ng-include="'views/header.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height:1073px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{comportamento.nome}}
+                <small>Editar, Excluir</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Cadastrar Compêtencia</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="box">
+                <div class="box-header">
+                    <!--<h3 class="box-title"></h3>-->
+                    <div class="box-title">
+                        <button class="btn btn-block btn-primary btn-sm" ng-click="open()">Inserir um novo Comportamento</button>
+
+                    </div>
+                    <div class="box-tools">
+                        <div class="input-group" style="width: 400px;">
+                            <input type="text" name="table_search" ng-model="term" class="form-control input-sm pull-right"
+                                   placeholder="Search">
+
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    <table class="table table-bordered table-border">
+                        <tr>
+                            <th ng-click="doSort($event, 'nome')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'nome'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'nome'&& !reverse
+                                }"></i>
+                                Nome
+                            </th>
+                            <th ng-click="doSort($event, 'descricao')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'descricao'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'descricao'&& !reverse
+                                }"
+                                ></i>
+                                Descrição
+                            </th>
+
+                             <th ng-click="doSort($event, 'created_at')">
+                                <i class="fa fa-fw fa-sort"
+                                   ng-class="{
+                                'fa-sort-amount-asc':sortField == 'created_at'&& reverse,
+                                'fa-sort-amount-desc':sortField == 'created_at'&& !reverse
+                                }"
+                                ></i>
+                                Data criação
+                             </th>
+                             <th>Açoes</th>
+                        </tr>
+                        <tr ng-show="comportamento.comportamentos.length <= 0">
+                            <td colspan="5" align="center"><strong>Não existe dados</strong></td>
+                        </tr>
+                        <tr ng-repeat="comportamento in comportamento.comportamentos | filter:term |orderBy: sortField:reverse">
+                            <td>{{comportamento.nome}}</td>
+                            <td>{{comportamento.descricao}}</td>
+                            <td>{{comportamento.created_at | amDateFormat:'DD/MM/YYYY'}}</td>
+                            <td>
+                                <a href="#" uib-tooltip="Excluir dados">
+                                    <i class="fa fa-fw fa-trash"></i>
+                                </a>
+                                <a href="#/comportamento-editar/{{comportamento.id}}">
+                                    <i class="fa fa-fw fa-pencil-square-o"></i>
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+            <script type="text/ng-template" id="comportamanto.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Cadastrar novo Comportamento</h3>
+                </div>
+                <div class="modal-body">
+                    <form name="formComportamanto">
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : formComportamanto.nome.$invalid && !formComportamanto.nome.$pristine }">
+                            <input type="text" name="nome" ng-required="true" ng-model="comportamento.nome" class="form-control" placeholder="Nome do Comportamento">
+                            <p ng-show="formComportamanto.nome.$invalid && !formComportamanto.nome.$pristine" class="help-block">Nome do Comportamento é obrigatório</p>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : formComportamanto.descricao.$invalid && !formComportamanto.descricao.$pristine }">
+                            <textarea name="descricao" ng-required="true" ng-model="comportamento.descricao" class="form-control" rows="5" cols="5" placeholder="Digite a descriçãos"></textarea>
+
+                            <p ng-show="formComportamanto.descricao.$invalid && !formComportamanto.descricao.$pristine" class="help-block">Descrição da Comportamento é obrigatório</p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-disabled="formComportamanto.$invalid" type="button" ng-click="cadastrar(comportamento)">Cadastrar novo Comportamento</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <div ng-include="'views/footer.html'"></div>
+    <div ng-include="'views/sidebar.html'"></div>
+</div>
